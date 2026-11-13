@@ -1,0 +1,8 @@
+# 例子：只带一个知识库的包。知识库放在 kb/<编号>/，一份 kb.toml 和一些文档，清单里不用写。
+# 要用的把 kb/ 拷进你的包文件夹，或者把整个文件夹拷到仓库根目录、改名成你的编号。
+[package]
+version = "0.1.0"
+name = { en = "Lighthouse lore", zh = "灯塔的设定集" }
+summary = { en = "People and places of the lighthouse story, as a knowledge base", zh = "把灯塔故事的人物和地点装进知识库" }
+license = "MIT"
+icon = "book-open"

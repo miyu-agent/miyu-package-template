@@ -1,0 +1,11 @@
+# 包的清单。文件夹名就是包的编号：把文件夹 my-package 改成你的编号，.github/workflows/release.yml 里的两处跟着改。
+# 每一格怎么写：https://github.com/miyu-agent/miyu/blob/main/docs/authors/manifest.md
+# 只带脚本、技能、命令模板、知识库、人格的包只写这一张 [package]，scripts/、skills/、commands/、kb/ 照约定放，清单里不用写。
+[package]
+version = "0.1.0"                                       # semver；打包、发到软件源必写，每发一次加一次
+name = { en = "My package", zh = "我的软件包" }          # 给人看的名字
+summary = { en = "Says hello", zh = "打个招呼" }          # 一句说明
+author = "Your Name <you@example.com>"                  # 作者，可以不写
+upstream = "https://github.com/your-name/your-repo"     # 源码仓库，可以不写
+license = "MIT"                                         # 许可证，建议写 SPDX 表达式，和仓库的 LICENSE 对上；可以不写
+icon = "package"                                        # Lucide 的图标名，可以不写

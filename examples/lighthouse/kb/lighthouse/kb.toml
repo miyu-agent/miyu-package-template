@@ -1,0 +1,4 @@
+# 可以没有。只认这三格：名字、说明会列进她的系统提示词，写短。
+name = "Lighthouse lore"
+description = "People, places and rules of the lighthouse story"
+auto = true

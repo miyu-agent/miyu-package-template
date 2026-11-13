@@ -1,0 +1,16 @@
+# 发版：推 v* 标签（v 加上 package.toml 里的 version，例如 v0.1.0）时，照 Miyu 官方的打包模板查清单、打成 .miyu，
+# 传进这个标签的 Release。在 Actions 页手动跑（workflow_dispatch）只打包、放进这一趟的产物，不发版，可以用来先试一下。
+# 用这个模板只要改下面 with 里的两处：package 和 folder。模板的其余写法见 https://github.com/miyu-agent/packages
+name: release
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+jobs:
+  pack:
+    uses: miyu-agent/packages/.github/workflows/pack.yml@main
+    permissions:
+      contents: write
+    with:
+      package: my-package   # 改这里：包的编号，打进 .miyu 的文件夹就叫这个名字
+      folder: my-package    # 改这里：包文件夹在仓库里的位置，照模板的做法和编号同名

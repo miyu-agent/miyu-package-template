@@ -1,0 +1,8 @@
+# 例子：只带一个技能的包。技能放在 skills/<名字>/SKILL.md，清单里不用写。
+# 要用的把 skills/ 拷进你的包文件夹，或者把整个文件夹拷到仓库根目录、改名成你的编号。
+[package]
+version = "0.1.0"
+name = { en = "Meeting notes", zh = "会议笔记" }
+summary = { en = "A skill for keeping meeting notes in a fixed format", zh = "照固定格式记会议笔记的技能" }
+license = "MIT"
+icon = "notebook-pen"
