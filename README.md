@@ -110,3 +110,5 @@ MIYU_HOME=/tmp/miyu-try miyu core stop          # 试完停掉这一份的核心
 ## 许可证
 
 `LICENSE` 是给你的包用的 MIT 模板：把版权人改成你自己，或者换成你要的许可证，清单的 `license` 跟着改。
+
+这个模板仓库自己的文字和例子以 [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/deed.zh-hans) 放弃版权：照抄、改、发都不用署名，也不用保留这一段。

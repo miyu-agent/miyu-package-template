@@ -110,3 +110,5 @@ For other errors see [Common errors](https://github.com/miyu-agent/miyu/blob/mai
 ## License
 
 `LICENSE` is an MIT template for your package: put your own name as the copyright holder, or switch to the license you want and change `license` in the manifest to match.
+
+The text and examples in this template are dedicated to the public domain under [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/): copy, change and publish them without credit, and you can drop this paragraph.
