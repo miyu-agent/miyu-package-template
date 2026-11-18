@@ -50,6 +50,19 @@ A package can bring any mix of the following. The file-based kinds go into the p
 
 To use an example: copy its `skills/` or `kb/` into your package folder; to take a whole example, copy its folder to the repository root, rename it to your id and update `release.yml`.
 
+A few more tables in the manifest bring these too:
+
+| What else | In the manifest | In one line |
+|---|---|---|
+| Settings | [`[settings.<name>]`](https://github.com/miyu-agent/miyu/blob/main/docs/authors/manifest.en.md#settingsname) | People fill them in under Settings → Packages; an extension gets them in the handshake, the package's scripts read the environment variable [`MIYU_SETTINGS_JSON`](https://github.com/miyu-agent/miyu/blob/main/docs/authors/scripts-skills.en.md#scripts) |
+| Preset switches | [`[features.<id>]`](https://github.com/miyu-agent/miyu/blob/main/docs/authors/manifest.en.md#featuresid) | One switch controls a group of tools; without any, the whole package is one switch |
+| A model provider | [`[providers.<id>]`](https://github.com/miyu-agent/miyu/blob/main/docs/authors/manifest.en.md#providersid) | Shows up in the provider list once installed, ready to switch to its models |
+| A name on the bus | [`[export]`](https://github.com/miyu-agent/miyu/blob/main/docs/authors/manifest.en.md#export) | Other packages call your methods over the bus by name (such as `stt`) |
+| Content for another package | [`[content.<package id>]`](https://github.com/miyu-agent/miyu/blob/main/docs/authors/manifest.en.md#contentpackage-id) | A folder of content for another package, such as a sticker content pack |
+| A block in the terminal or web UI | [`[[widget]]`](https://github.com/miyu-agent/miyu/blob/main/docs/authors/manifest.en.md#widget) | An extension puts a block of its own in the terminal or the web UI |
+| A mascot | [`[mascot]`](https://github.com/miyu-agent/miyu/blob/main/docs/authors/manifest.en.md#mascot) | The mascot on the terminal's home screen, as a package |
+| A look | [`[theme.tui]`, `[theme.web]`](https://github.com/miyu-agent/miyu/blob/main/docs/authors/manifest.en.md#theme) | A terminal theme, a web theme; a theme package brings only this |
+
 Tool and skill descriptions (`Description`, `description`) are for the model and go out with every request: write short English sentences, at most three per tool. Names and descriptions for people have their own places (`Display name`, `显示名称`, `display_name`, `summary` and their `_zh`/`_ja` variants).
 
 How to write each one: the [author guides](https://github.com/miyu-agent/miyu/tree/main/docs/authors), in particular [Things that work as files](https://github.com/miyu-agent/miyu/blob/main/docs/authors/scripts-skills.en.md) (scripts, skills, command templates, knowledge bases, personas), [the manifest](https://github.com/miyu-agent/miyu/blob/main/docs/authors/manifest.en.md), [MCP servers](https://github.com/miyu-agent/miyu/blob/main/docs/authors/mcp.en.md) and [extensions](https://github.com/miyu-agent/miyu/blob/main/docs/authors/extensions.en.md).
@@ -69,7 +82,7 @@ MIYU_HOME=/tmp/miyu-try miyu kb list            # with a knowledge base: shows "
 MIYU_HOME=/tmp/miyu-try miyu core stop          # stop that core when done, then delete /tmp/miyu-try
 ```
 
-- On Linux and macOS scripts need the executable bit: `chmod +x <id>/scripts/*.py`, and git keeps it.
+- A script whose first line is `#!` (like the template's example) needs no `chmod +x`: Miyu starts the interpreter and passes the script file to it. A script without `#!` needs `chmod +x` on Linux and macOS, and git keeps it.
 - Installing again after a change is an upgrade. Installed skills show up when you type `$` in `miyu`'s input box; script tools show up in the preset settings, where each can be switched on or off.
 - Packing leaves out `.git`, `.github`, `__pycache__`, `.DS_Store` and `*.pyc`. Everything else goes in, so keep what you don't want packed out of the package folder.
 
@@ -100,7 +113,7 @@ Add the topic `miyu-package` to the repository (the gear next to About on the re
 |---|---|
 | The packed file is called `my-package-…` or something else | The folder name is the id: rename the package folder |
 | Cannot pack: the manifest has no version | Write `version = "0.1.0"` in `[package]` |
-| `Unknown key package.license` | The running Miyu predates the `license` field: update Miyu, or remove the `license` line |
+| `package.license is not a known key` | The running Miyu predates the `license` field: update Miyu, or remove the `license` line |
 | `tag … does not match version …` in Actions | The tag without `v` must equal `version` in the manifest |
 | `package_conflict` | A tool, skill or knowledge base name clashes with another installed package: rename and install again |
 | A script or skill doesn't show up | `miyu check` says which one and why it was skipped |

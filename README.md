@@ -50,6 +50,19 @@
 
 用例子：把例子里的 `skills/`、`kb/` 拷进你的包文件夹；整包照搬的，把例子文件夹拷到仓库根目录、改名成你的编号，再改 `release.yml`。
 
+清单里多写几张表，还能带下面这些：
+
+| 还能带什么 | 清单里写 | 一句话 |
+|---|---|---|
+| 配置项 | [`[settings.<名字>]`](https://github.com/miyu-agent/miyu/blob/main/docs/authors/manifest.md#settings名字) | 人在设置的「软件包」页填；扩展握手时拿到，包里的脚本从环境变量 [`MIYU_SETTINGS_JSON`](https://github.com/miyu-agent/miyu/blob/main/docs/authors/scripts-skills.md#脚本) 读 |
+| 预设里的开关 | [`[features.<编号>]`](https://github.com/miyu-agent/miyu/blob/main/docs/authors/manifest.md#features编号) | 一个开关管一组工具；不写的整个包一个开关 |
+| 模型供应商 | [`[providers.<编号>]`](https://github.com/miyu-agent/miyu/blob/main/docs/authors/manifest.md#providers编号) | 装上就出现在供应商列表里，直接切到它的模型 |
+| 总线上的名字 | [`[export]`](https://github.com/miyu-agent/miyu/blob/main/docs/authors/manifest.md#export) | 别的包经总线照名字（例如 `stt`）调你的方法 |
+| 给别的包带内容 | [`[content.<包的编号>]`](https://github.com/miyu-agent/miyu/blob/main/docs/authors/manifest.md#content包的编号) | 给另一个包带一个目录的内容，例如表情包的内容包 |
+| 终端、网页上的一块 | [`[[widget]]`](https://github.com/miyu-agent/miyu/blob/main/docs/authors/manifest.md#widget) | 扩展往终端、网页上放自己的一块内容 |
+| 吉祥物 | [`[mascot]`](https://github.com/miyu-agent/miyu/blob/main/docs/authors/manifest.md#mascot) | 终端首页的吉祥物，做成一个包 |
+| 外观 | [`[theme.tui]`、`[theme.web]`](https://github.com/miyu-agent/miyu/blob/main/docs/authors/manifest.md#theme) | 终端主题、网页主题；外观包只带这一样 |
+
 工具、技能的说明（`Description`、`description`）是给模型看的，每一轮跟着请求发：写英文短句，一件工具最多三句。给人看的名字、说明另有地方写（`显示名称`、`描述`、`display_name_zh`、`summary_zh`）。
 
 每一样怎么写：[作者文档](https://github.com/miyu-agent/miyu/tree/main/docs/authors)，其中 [放文件就能用的](https://github.com/miyu-agent/miyu/blob/main/docs/authors/scripts-skills.md)（脚本、技能、命令模板、知识库、人格）、[清单](https://github.com/miyu-agent/miyu/blob/main/docs/authors/manifest.md)、[接 MCP 服务](https://github.com/miyu-agent/miyu/blob/main/docs/authors/mcp.md)、[写扩展](https://github.com/miyu-agent/miyu/blob/main/docs/authors/extensions.md)。
@@ -69,7 +82,7 @@ MIYU_HOME=/tmp/miyu-try miyu kb list            # 带了知识库的：写着「
 MIYU_HOME=/tmp/miyu-try miyu core stop          # 试完停掉这一份的核心，再删 /tmp/miyu-try
 ```
 
-- Linux、macOS 上脚本要有可执行权限：`chmod +x <编号>/scripts/*.py`，git 会记住它。
+- 脚本第一行写了 `#!`（像模板里的例子）就不用 `chmod +x`：Miyu 起的是解释器，脚本文件当参数交给它。没写 `#!` 的脚本，Linux、macOS 上要 `chmod +x`，git 会记住它。
 - 改了再装一次就是升级。技能装上以后，在 `miyu` 的输入框敲 `$` 能看到；脚本工具在设置的预设里能看到、能开关。
 - 打包不打进去的：`.git`、`.github`、`__pycache__`、`.DS_Store`、`*.pyc`。别的都进，不想打进去的别放在包文件夹里。
 
@@ -100,7 +113,7 @@ MIYU_HOME=/tmp/miyu-try miyu core stop          # 试完停掉这一份的核心
 |---|---|
 | 打出来的包叫 `my-package-…` 或别的名字 | 文件夹名就是编号：改包文件夹的名字 |
 | 无法打包：清单没有写版本 | `[package]` 里写 `version = "0.1.0"` |
-| `不认识的键 package.license` | 正在跑的 Miyu 比 `license` 这一格旧：更新 Miyu，或者删掉清单里 `license` 那一行 |
+| `package.license is not a known key` | 正在跑的 Miyu 比 `license` 这一格旧：更新 Miyu，或者删掉清单里 `license` 那一行 |
 | Actions 里 `tag … does not match version …` | 标签去掉 `v` 要和清单的 `version` 一样 |
 | `package_conflict` | 工具、技能、知识库的名字和装着的别的包撞了：改名再装 |
 | 脚本、技能没出现 | `miyu check` 说哪一个、为什么跳过 |
