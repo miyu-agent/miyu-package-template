@@ -43,10 +43,14 @@
 |---|---|---|
 | 给 AI 一件小工具 | `scripts/<名字>.py`（或别的可执行文件） | `my-package/scripts/` |
 | 教 AI 一套做事的办法 | `skills/<名字>/SKILL.md` | `examples/meeting-notes/` |
-| 一套给她查的资料 | `kb/<编号>/`：`kb.toml` 和文档 | `examples/lighthouse/` |
+| 一套给 AI 查的资料 | `kb/<编号>/`：`kb.toml` 和文档 | `examples/lighthouse/` |
 | 一条斜杠命令 | `commands/<名字>.md` | 见作者文档 |
 | 人格、预设 | `personas/<编号>/`、`presets/<编号>.toml` | 见作者文档 |
 | 接 MCP 服务、常驻的扩展程序、后台页 | 清单里写 `[[mcp]]`、`[process]`、`[page]` | 见作者文档 |
+| 让人在设置页填的几项 | 清单里写 `[settings.<名字>]`；脚本从环境变量 `MIYU_SETTINGS_JSON` 读 | 见作者文档 |
+| 一家模型供应商 | 清单里写 `[providers.<编号>]` | 见作者文档 |
+| 外观、终端首页的吉祥物 | 清单里写 `[theme]`、`[mascot]` | 见作者文档 |
+| 给别的包调的方法、给别的包带的内容 | 清单里写 `[export]`、`[content.<包的编号>]` | 见作者文档 |
 
 用例子：把例子里的 `skills/`、`kb/` 拷进你的包文件夹；整包照搬的，把例子文件夹拷到仓库根目录、改名成你的编号，再改 `release.yml`。
 
@@ -69,7 +73,7 @@ MIYU_HOME=/tmp/miyu-try miyu kb list            # 带了知识库的：写着「
 MIYU_HOME=/tmp/miyu-try miyu core stop          # 试完停掉这一份的核心，再删 /tmp/miyu-try
 ```
 
-- Linux、macOS 上脚本要有可执行权限：`chmod +x <编号>/scripts/*.py`，git 会记住它。
+- 第一行写了 `#!` 的脚本不用可执行权限。没写的在 Linux、macOS 上要：`chmod +x <编号>/scripts/<文件>`，git 会记住它。
 - 改了再装一次就是升级。技能装上以后，在 `miyu` 的输入框敲 `$` 能看到；脚本工具在设置的预设里能看到、能开关。
 - 打包不打进去的：`.git`、`.github`、`__pycache__`、`.DS_Store`、`*.pyc`。别的都进，不想打进去的别放在包文件夹里。
 
@@ -100,7 +104,7 @@ MIYU_HOME=/tmp/miyu-try miyu core stop          # 试完停掉这一份的核心
 |---|---|
 | 打出来的包叫 `my-package-…` 或别的名字 | 文件夹名就是编号：改包文件夹的名字 |
 | 无法打包：清单没有写版本 | `[package]` 里写 `version = "0.1.0"` |
-| `不认识的键 package.license` | 正在跑的 Miyu 比 `license` 这一格旧：更新 Miyu，或者删掉清单里 `license` 那一行 |
+| `不认识的键 package.license`，打包时是 `package.license is not a known key` | 正在跑的 Miyu 比 `license` 这一格旧：更新 Miyu，或者删掉清单里 `license` 那一行 |
 | Actions 里 `tag … does not match version …` | 标签去掉 `v` 要和清单的 `version` 一样 |
 | `package_conflict` | 工具、技能、知识库的名字和装着的别的包撞了：改名再装 |
 | 脚本、技能没出现 | `miyu check` 说哪一个、为什么跳过 |
