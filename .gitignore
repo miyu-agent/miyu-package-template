@@ -1,3 +1,4 @@
 *.miyu
 dist/
 __pycache__/
+/.worktrees/
