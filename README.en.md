@@ -43,10 +43,14 @@ A package can bring any mix of the following. The file-based kinds go into the p
 |---|---|---|
 | Give the AI a small tool | `scripts/<name>.py` (or any executable) | `my-package/scripts/` |
 | Teach the AI a way of doing something | `skills/<name>/SKILL.md` | `examples/meeting-notes/` |
-| A set of material for her to look up | `kb/<id>/`: `kb.toml` and documents | `examples/lighthouse/` |
+| A set of material for the AI to look up | `kb/<id>/`: `kb.toml` and documents | `examples/lighthouse/` |
 | A slash command | `commands/<name>.md` | see the author guides |
 | Personas, presets | `personas/<id>/`, `presets/<id>.toml` | see the author guides |
 | An MCP server, a long-running extension, a settings page | `[[mcp]]`, `[process]`, `[page]` in the manifest | see the author guides |
+| A few settings for people to fill in | `[settings.<name>]` in the manifest; scripts read them from the `MIYU_SETTINGS_JSON` environment variable | see the author guides |
+| A model provider | `[providers.<id>]` in the manifest | see the author guides |
+| A look, the mascot on the terminal's home screen | `[theme]`, `[mascot]` in the manifest | see the author guides |
+| Methods other packages call, content for another package | `[export]`, `[content.<package id>]` in the manifest | see the author guides |
 
 To use an example: copy its `skills/` or `kb/` into your package folder; to take a whole example, copy its folder to the repository root, rename it to your id and update `release.yml`.
 
@@ -69,7 +73,7 @@ MIYU_HOME=/tmp/miyu-try miyu kb list            # with a knowledge base: shows "
 MIYU_HOME=/tmp/miyu-try miyu core stop          # stop that core when done, then delete /tmp/miyu-try
 ```
 
-- On Linux and macOS scripts need the executable bit: `chmod +x <id>/scripts/*.py`, and git keeps it.
+- A script whose first line is a `#!` line needs no executable bit. One without it does on Linux and macOS: `chmod +x <id>/scripts/<file>`, and git keeps it.
 - Installing again after a change is an upgrade. Installed skills show up when you type `$` in `miyu`'s input box; script tools show up in the preset settings, where each can be switched on or off.
 - Packing leaves out `.git`, `.github`, `__pycache__`, `.DS_Store` and `*.pyc`. Everything else goes in, so keep what you don't want packed out of the package folder.
 
@@ -100,7 +104,7 @@ Add the topic `miyu-package` to the repository (the gear next to About on the re
 |---|---|
 | The packed file is called `my-package-…` or something else | The folder name is the id: rename the package folder |
 | Cannot pack: the manifest has no version | Write `version = "0.1.0"` in `[package]` |
-| `Unknown key package.license` | The running Miyu predates the `license` field: update Miyu, or remove the `license` line |
+| `Unknown key package.license`, or `package.license is not a known key` when packing | The running Miyu predates the `license` field: update Miyu, or remove the `license` line |
 | `tag … does not match version …` in Actions | The tag without `v` must equal `version` in the manifest |
 | `package_conflict` | A tool, skill or knowledge base name clashes with another installed package: rename and install again |
 | A script or skill doesn't show up | `miyu check` says which one and why it was skipped |
