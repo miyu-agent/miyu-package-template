@@ -10,7 +10,7 @@
 # 上面连着的那一段注释是工具的开头：Description 等几行给模型看（英文短句），描述、显示名称给人看。
 # 工具名照文件名（去掉扩展名）：my-package-hello。改编号时文件名一起改，带上编号做前缀免得和别的包撞。
 # 参数是一份 JSON，从标准输入读；标准输出、标准错误都交给 AI；退出码不是 0 的算失败，把原因写进输出。
-# 写法见 https://github.com/miyu-agent/miyu/blob/main/docs/authors/scripts-skills.md
+# 写法见 https://github.com/miyu-agent/miyu/blob/main/docs/zh/dev/scripts-skills.md
 import json
 import sys
 
