@@ -56,7 +56,7 @@
 
 工具、技能的说明（`Description`、`description`）是给模型看的，每一轮跟着请求发：写英文短句，一件工具最多三句。给人看的名字、说明另有地方写（`显示名称`、`描述`、`display_name_zh`、`summary_zh`）。
 
-每一样怎么写：[作者文档](https://github.com/miyu-agent/miyu/tree/main/docs/authors)，其中 [放文件就能用的](https://github.com/miyu-agent/miyu/blob/main/docs/authors/scripts-skills.md)（脚本、技能、命令模板、知识库、人格）、[清单](https://github.com/miyu-agent/miyu/blob/main/docs/authors/manifest.md)、[接 MCP 服务](https://github.com/miyu-agent/miyu/blob/main/docs/authors/mcp.md)、[写扩展](https://github.com/miyu-agent/miyu/blob/main/docs/authors/extensions.md)。
+每一样怎么写：[作者文档](https://github.com/miyu-agent/miyu/tree/main/docs/zh/dev)，其中 [放文件就能用的](https://github.com/miyu-agent/miyu/blob/main/docs/zh/dev/scripts-skills.md)（脚本、技能、命令模板、知识库、人格）、[清单](https://github.com/miyu-agent/miyu/blob/main/docs/zh/dev/manifest.md)、[接 MCP 服务](https://github.com/miyu-agent/miyu/blob/main/docs/zh/dev/mcp.md)、[写扩展](https://github.com/miyu-agent/miyu/blob/main/docs/zh/dev/extensions.md)。
 
 ### 4. 本地试
 
@@ -109,7 +109,7 @@ MIYU_HOME=/tmp/miyu-try miyu core stop          # 试完停掉这一份的核心
 | `package_conflict` | 工具、技能、知识库的名字和装着的别的包撞了：改名再装 |
 | 脚本、技能没出现 | `miyu check` 说哪一个、为什么跳过 |
 
-别的报错见作者文档的 [常见报错](https://github.com/miyu-agent/miyu/blob/main/docs/authors/README.md#常见报错)。
+别的报错见作者文档的 [常见报错](https://github.com/miyu-agent/miyu/blob/main/docs/zh/dev/packages.md#常见报错)。
 
 ## 许可证
 

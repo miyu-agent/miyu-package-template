@@ -56,7 +56,7 @@ To use an example: copy its `skills/` or `kb/` into your package folder; to take
 
 Tool and skill descriptions (`Description`, `description`) are for the model and go out with every request: write short English sentences, at most three per tool. Names and descriptions for people have their own places (`Display name`, `显示名称`, `display_name`, `summary` and their `_zh`/`_ja` variants).
 
-How to write each one: the [author guides](https://github.com/miyu-agent/miyu/tree/main/docs/authors), in particular [Things that work as files](https://github.com/miyu-agent/miyu/blob/main/docs/authors/scripts-skills.en.md) (scripts, skills, command templates, knowledge bases, personas), [the manifest](https://github.com/miyu-agent/miyu/blob/main/docs/authors/manifest.en.md), [MCP servers](https://github.com/miyu-agent/miyu/blob/main/docs/authors/mcp.en.md) and [extensions](https://github.com/miyu-agent/miyu/blob/main/docs/authors/extensions.en.md).
+How to write each one: the [author guides](https://github.com/miyu-agent/miyu/tree/main/docs/en/dev), in particular [Things that work as files](https://github.com/miyu-agent/miyu/blob/main/docs/en/dev/scripts-skills.md) (scripts, skills, command templates, knowledge bases, personas), [the manifest](https://github.com/miyu-agent/miyu/blob/main/docs/en/dev/manifest.md), [MCP servers](https://github.com/miyu-agent/miyu/blob/main/docs/en/dev/mcp.md) and [extensions](https://github.com/miyu-agent/miyu/blob/main/docs/en/dev/extensions.md).
 
 ### 4. Try it locally
 
@@ -109,7 +109,7 @@ Add the topic `miyu-package` to the repository (the gear next to About on the re
 | `package_conflict` | A tool, skill or knowledge base name clashes with another installed package: rename and install again |
 | A script or skill doesn't show up | `miyu check` says which one and why it was skipped |
 
-For other errors see [Common errors](https://github.com/miyu-agent/miyu/blob/main/docs/authors/README.en.md#common-errors) in the author guides.
+For other errors see [Common errors](https://github.com/miyu-agent/miyu/blob/main/docs/en/dev/packages.md#common-errors) in the author guides.
 
 ## License
 

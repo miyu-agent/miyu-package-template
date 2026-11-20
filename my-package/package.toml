@@ -1,5 +1,5 @@
 # 包的清单。文件夹名就是包的编号：把文件夹 my-package 改成你的编号，.github/workflows/release.yml 里的两处跟着改。
-# 每一格怎么写：https://github.com/miyu-agent/miyu/blob/main/docs/authors/manifest.md
+# 每一格怎么写：https://github.com/miyu-agent/miyu/blob/main/docs/zh/dev/manifest.md
 # 只带脚本、技能、命令模板、知识库、人格的包只写这一张 [package]，scripts/、skills/、commands/、kb/ 照约定放，清单里不用写。
 [package]
 version = "0.1.0"                                       # semver；打包、发到软件源必写，每发一次加一次
